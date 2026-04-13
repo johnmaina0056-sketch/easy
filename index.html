@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EASY COACH</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* HEADER */
+.header {
+  background: #b30000;
+  padding: 12px 25px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* LOGO */
+.logo {
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.logo .easy {
+  color: black;
+  font-size: 42px;
+  font-weight: bold;
+}
+
+.logo .coach {
+  color: white;
+  font-size: 42px;
+  font-weight: bold;
+}
+
+.logo .badge {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ff4d4d, #990000);
+  font-weight: bold;
+}
+
+/* NAVBAR */
+.navbar {
+  background: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+}
+
+.navbar a {
+  padding: 12px 18px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.navbar a:hover {
+  background: #ddd;
+}
+
+/* SECTIONS */
+section {
+  display: none;
+  padding: 50px 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+section.active {
+  display: block;
+  opacity: 1;
+}
+
+//* HERO SECTION (BACKGROUND IMAGE) */
+.hero {
+  height: 400px;
+  background: url('https://images.unsplash.com/photo-1509749837427-ac94a2553d0e') center/cover no-repeat;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* DARK OVERLAY */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+/* HERO TEXT */
+.hero-content {
+  position: relative;
+  color: white;
+  text-align: center;
+  z-index: 2;
+}
+
+.hero-content h1 {
+  font-size: 42px;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.hero-content p {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #ddd;
+}
+}
+
+.booking-bar {
+  position: relative;
+  z-index: 3;
+}
+
+.trip-type {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.field label {
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.field select,
+.field input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.swap {
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.book-btn {
+  background: black;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.book-btn:hover {
+  background: #333;
+}
+
+/* BOOKING FORM */
+.booking {
+  width: 85%;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  border-radius: 6px;
+}
+
+.booking input,
+.booking button {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+}
+
+.booking button {
+  background: #b30000;
+  color: white;
+  border: none;
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+/* FOOTER */
+footer {
+  background: black;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+/* FLOATING CALL BUTTON */
+.call-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #c40000;
+  color: white;
+  font-size: 22px;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  text-decoration: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  z-index: 999;
+  transition: 0.3s;
+}
+
+.call-btn:hover {
+  background: #ff1a1a;
+  transform: scale(1.1);
+}
+</style>
+
+</head>
+<!-- FLOATING CALL BUTTON -->
+<a href="tel:0762912142" class="call-btn">📞</a>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">
+    <span class="easy">easy</span>
+    <span class="coach">coach</span>
+    <span class="badge">e</span>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<div class="navbar">
+  <a onclick="showSection('home')">Home</a>
+  <a onclick="showSection('bus')">Bus Hire</a>
+  <a onclick="showSection('parcels')">Parcels</a>
+  <a onclick="showSection('about')">About Us</a>
+</div>
+
+<!-- HOME -->
+<div class="hero">
+  <div class="hero-content">
+    <h1>Welcome to EASY COACH</h1>
+    <p>Comfortable • Reliable • Affordable Travel Across Kenya</p>
+  </div>
+</div>
+  <div class="booking-bar">
+    <div class="trip-type">
+      <input type="radio" checked> One way
+    </div>
+
+    <div class="form-row">
+
+      <div class="field">
+  <label>From</label>
+  <select>
+    <option>Select...</option>
+    <option>Awendo</option>
+    <option>Bomet</option>
+    <option>Bondo</option>
+    <option>Bumala</option>
+    <option>Bungoma</option>
+    <option>Busia</option>
+    <option>Butere</option>
+    <option>Eldoret</option>
+    <option>Homabay</option>
+    <option>Kaimosi</option>
+    <option>Kakamega</option>
+    <option>Kapsabet</option>
+    <option>Kehancha</option>
+    <option>Kendubay</option>
+    <option>Kericho</option>
+    <option>Keroka</option>
+    <option>Kimilili</option>
+    <option>Kisii</option>
+    <option>Kisumu</option>
+    <option>Mombasa</option>
+    <option>Nairobi</option>
+    <option>nakuru</option>
+    <option>narok</option>
+    <option>ndihiwa</option>
+    <option>ndori</option>
+    <option>oyuis</option>
+    <option>Rodikopany</option>
+    <option>rongo</option>
+    <option>siaya</option>
+    <option>sirare</option>
+    <option>sori</option>
+    <option>ugunja</option>
+    <option>usenge</option>
+    <option>webuye</option>
+    
+  </select>
+</div>
+
+      <div class="swap">⇄</div>
+
+      <div class="field">
+        <label>To</label>
+        <select>
+          <option>Select...</option>
+          <option>Awendo</option>
+    <option>Bomet</option>
+    <option>Bondo</option>
+    <option>Bumala</option>
+    <option>Bungoma</option>
+    <option>Busia</option>
+    <option>Butere</option>
+    <option>Eldoret</option>
+    <option>Homabay</option>
+    <option>Kaimosi</option>
+    <option>Kakamega</option>
+    <option>Kapsabet</option>
+    <option>Kehancha</option>
+    <option>Kendubay</option>
+    <option>Kericho</option>
+    <option>Keroka</option>
+    <option>Kimilili</option>
+    <option>Kisii</option>
+    <option>Kisumu</option>
+    <option>Mombasa</option>
+    <option>Nairobi</option>
+    <option>nakuru</option>
+    <option>narok</option>
+    <option>ndihiwa</option>
+    <option>ndori</option>
+    <option>oyuis</option>
+    <option>Rodikopany</option>
+    <option>rongo</option>
+    <option>siaya</option>
+    <option>sirare</option>
+    <option>sori</option>
+    <option>ugunja</option>
+    <option>usenge</option>
+    <option>webuye</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Departure</label>
+        <input type="date">
+      </div>
+
+     <a href="https://wa.me/254762912142?text=Hello%20EasyCoach,%20I%20want%20to%20book%20a%20trip" target="_blank">
+  <button class="book-btn">Make a booking</button>
+</a>
+
+    </div>
+  </div>
+</section>
+
+<!-- BUS HIRE -->
+<section id="bus">
+  <h2>Bus Hire</h2>
+  <p>Rent our buses with a driver from the best operator</p>
+
+  <div class="booking">
+    <input placeholder="Full Name / Company Name">
+    <input placeholder="Pick-up Location">
+    <input placeholder="Drop-off Location">
+    <input type="date">
+    <input type="time">
+    <input type="date">
+    <input type="time">
+    <input placeholder="Mobile Number">
+    <input placeholder="Email">
+    <button>SUBMIT</button>
+  </div>
+</section>
+
+<!-- PARCELS -->
+<section id="parcels">
+  <h2>EasyCoach Courier Tariffs</h2>
+  <p>Letters and Parcels Courier Services</p>
+
+  <table>
+    <tr><th>Type</th><th>Price</th></tr>
+    <tr><td>Small Envelope</td><td>300</td></tr>
+    <tr><td>Big Envelope</td><td>350</td></tr>
+    <tr><td>3D Parcel</td><td>450</td></tr>
+    <tr><td>0-7kg</td><td>350</td></tr>
+    <tr><td>8-10kg</td><td>400</td></tr>
+    <tr><td>11-15kg</td><td>500</td></tr>
+  </table>
+
+  <p>📞 +254 726 354 302</p>
+  <p>📧 parcels@easycoachkenya.com</p>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2>About EasyCoach LTD</h2>
+
+  <p>
+    Easycoach LTD is a leading transport company in Kenya that provides reliable,
+    comfortable, and affordable bus services across the country.
+  </p>
+
+  <h3>Vision</h3>
+  <p>To be the leading provider of safe, reliable transport solutions.</p>
+
+  <h3>Mission</h3>
+  <p>To provide comfortable and efficient travel experiences.</p>
+
+  <h3>Core Values</h3>
+  <p>Safety, Reliability, Customer Satisfaction, Integrity, Professionalism.</p>
+</section>
+
+
+
+<!-- SCRIPT -->
+<script>
+function showSection(sectionId) {
+  const sections = document.querySelectorAll("section");
+
+  sections.forEach(section => {
+    section.classList.remove("active");
+  });
+
+  document.getElementById(sectionId).classList.add("active");
+}
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+}
+
+/* BANNER */
+.banner {
+    background: #eee;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.banner-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.banner-left img {
+    width: 150px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.banner-text {
+    text-align: center;
+    flex: 1;
+}
+
+.banner-text h2 {
+    color: red;
+    font-size: 18px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.routes {
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.routes span {
+    margin: 0 8px;
+}
+
+.offer {
+    background: red;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.book-btn {
+    background: black;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.right-logo {
+    font-size: 14px;
+    text-align: right;
+}
+
+/* FEATURES */
+.features {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 20px;
+    background: white;
+    text-align: center;
+}
+
+.feature {
+    max-width: 300px;
+}
+
+.icon {
+    font-size: 30px;
+    color: red;
+    margin-bottom: 10px;
+}
+
+.feature h3 {
+    margin: 10px 0;
+}
+
+.feature p {
+    color: #555;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- BANNER -->
+<div class="banner">
+    
+    <div class="banner-left">
+        <img src="https://via.placeholder.com/150x90" alt="">
+        <div class="offer">OFFER</div>
+    </div>
+
+    <div class="banner-text">
+        <h2>NEW ROUTE: SORI, VIA RODYKOPANY AND NDHIWA</h2>
+        <div class="routes">
+            ● NAIROBI &gt; RODI @ 1,400/- 
+            <span>●</span>
+            NAIROBI &gt; NDHIWA @ 1,450/- 
+            <span>●</span>
+            NAIROBI &gt; SORI @ 1,450/-
+        </div>
+    </div>
+
+    <button class="book-btn">BOOK NOW</button>
+
+    <div class="right-logo">
+        <small>T&C'S APPLY</small><br>
+        <strong>easycoach</strong>
+    </div>
+
+</div>
+
+<!-- FEATURES -->
+<div class="features">
+
+    <div class="feature">
+        <div class="icon">💺</div>
+        <h3>Comfort on board</h3>
+        <p>Our buses are equipped with large and comfortable seats.</p>
+    </div>
+
+    <div class="feature">
+        <div class="icon">📍</div>
+        <h3>Largest bus network in Kenya</h3>
+        <p>Choose from over 35 travel destinations.</p>
+    </div>
+
+    <div class="feature">
+        <div class="icon">🌿</div>
+        <h3>Travel environmentally-friendly</h3>
+        <p>Our efficient coaches are proven to have an excellent carbon footprint.</p>
+    </div>
+
+</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 30px;
+}
+
+/* CARD */
+.card {
+    background: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* IMAGE */
+.card-img {
+    position: relative;
+}
+
+.card-img img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* RED TAG */
+.tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: red;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* TEXT */
+.card-text {
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+</style>
+
+</head>
+<body>
+
+<div class="grid">
+
+    <div class="card">
+        <div class="card-img">
+            <img src="nai.jfif" alt="">
+            <div class="tag">NAIROBI</div>
+        </div>
+        <div class="card-text">Nairobi to Kitale</div>
+    </div>
+
+    <div class="card">
+        <div class="card-img">
+            <img src="saire.jfif" alt="">
+            <div class="tag">SIRARE</div>
+        </div>
+        <div class="card-text">Nairobi to Sirare</div>
+    </div>
+
+    <div class="card">
+        <div class="card-img">
+            <img src="mumias.jfif" alt="">
+            <div class="tag">MUMIAS</div>
+        </div>
+        <div class="card-text">Nairobi to Mumias</div>
+    </div>
+
+    <div class="card">
+        <div class="card-img">
+            <img src="busia.jfif" alt="">
+            <div class="tag">BUSIA</div>
+        </div>
+        <div class="card-text">Nairobi to Busia</div>
+    </div>
+
+    <div class="card">
+        <div class="card-img">
+            <img src="malaba.jfif" alt="">
+            <div class="tag">MALABA</div>
+        </div>
+        <div class="card-text">Nairobi to Malaba</div>
+    </div>
+
+    <div class="card">
+        <div class="card-img">
+            <img src="kisumu.jfif" alt="">
+            <div class="tag">KISUMU</div>
+        </div>
+        <div class="card-text">Nairobi to Kisumu</div>
+    </div>
+
+</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+}
+
+/* SECTION */
+.hero {
+    margin: 30px;
+    height: 280px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470') center/cover no-repeat;
+}
+
+/* OVERLAY (optional dark tint) */
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.25);
+}
+
+/* TEXT */
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 60px;
+    transform: translateY(-50%);
+    color: white;
+    z-index: 2;
+}
+
+.hero-content h2 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.hero-content p {
+    margin-top: 10px;
+    font-size: 16px;
+}
+/* TESTIMONIALS SECTION */
+.testimonials {
+  text-align: center;
+  padding: 70px 20px;
+  background: #f9f9f9;
+}
+
+/* TITLE */
+.testimonials h2 {
+  font-size: 34px;
+  color: #1b2a4e;
+  margin-bottom: 10px;
+}
+
+/* RED LINE */
+.red-line {
+  width: 70px;
+  height: 4px;
+  background: #c40000;
+  margin: 10px auto 40px;
+  border-radius: 2px;
+}
+
+/* CONTAINER */
+.testimonial-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* CARD */
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  width: 380px;
+  text-align: left;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* HOVER EFFECT */
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* QUOTE STYLE */
+.card p {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* NAME */
+.name {
+  color: #c40000;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* COUNTRY */
+.country {
+  color: #888;
+  font-size: 13px;
+}
+
+/* STARS */
+.stars {
+  color: #f4c150;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+/* OFFICIAL BAR */
+.official-bar {
+  background: linear-gradient(to right, #b30000, #ff1a1a);
+  color: white;
+  text-align: center;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="hero">
+    <div class="hero-content">
+        <h2>Discover all destinations</h2>
+        <p>Choose from over 35 travel destinations.</p>
+    </div>
+</div>
+
+
+</body>
+</html>
+
+</body>
+</html>
+
+<!-- TESTIMONIALS -->
+<div class="testimonials">
+  <h2>Our Happy Travelers</h2>
+  <div class="red-line"></div>
+
+  <div class="testimonial-container">
+
+    <div class="card">
+      <p>
+        I've used Easy Coach Ltd for the last 7 years.. 4/6 times in each of those years...
+        efficiency, reliability and most importantly safety has been your mantra all along, keep it up.
+      </p>
+
+      <div class="name">BOOKER O.</div>
+      <div class="country">Kenya</div>
+      <div class="stars">★★★★★</div>
+    </div>
+
+    <div class="card">
+      <p>Great job 👍</p>
+
+      <div class="name">BEATRICE N.</div>
+      <div class="country">Kenya</div>
+      <div class="stars">★★★★☆</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="official-bar">
+  🔔 The official <b>easycoach</b> website. 🔔
+</div>
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-logo">
+      <img src="easycoach-logo.png" alt="easycoach">
+      <p>experience dignity</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Our Company</h3>
+      <a href="#">About us</a>
+      <a href="#">Contact us</a>
+      <a href="#">Terms & Conditions</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Delete My Account</a>
+    </div>
+
+    <div class="footer-col">
+      <h3>Our Contact</h3>
+      <p class="phone">0762-912-142</p>
+
+      <p class="email-title">Email:</p>
+      <a class="email" href="#">easycoachltd66@gmail.com</a>
+      <a class="email" href="#">easycoachltd66@gmail.com</a>
+    </div>
+
+    <div class="footer-col">
+      <h3>Top Routes</h3>
+      <a href="#">Nairobi - Kitale</a>
+      <a href="#">Nairobi - Sirare</a>
+      <a href="#">Nairobi - Mumias</a>
+      <a href="#">Nairobi - Busia</a>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+.footer{
+background:#efefef;
+padding:40px 60px;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+.footer-container{
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:40px;
+}
+
+.footer-logo img{
+width:180px;
+}
+
+.footer-logo p{
+margin-top:5px;
+color:#555;
+font-size:14px;
+}
+
+.footer-col{
+min-width:200px;
+}
+
+.footer-col h3{
+margin-bottom:15px;
+font-size:18px;
+color:#000;
+}
+
+.footer-col a{
+display:block;
+text-decoration:none;
+color:#000;
+margin-bottom:8px;
+font-size:14px;
+}
+
+.phone{
+color:#c40000;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.email-title{
+font-weight:bold;
+margin-bottom:5px;
+color:#000;
+}
+
+.email{
+color:#c40000 !important;
+}
+</style>
