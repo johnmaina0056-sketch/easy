@@ -52,34 +52,51 @@ body {
   font-weight: bold;
 }
 
-/* NAVBAR */
+/* ================= NAVBAR (UPDATED MOBILE FRIENDLY) ================= */
 .navbar {
   background: #f2f2f2;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   position: sticky;
   top: 0;
+  z-index: 999;
 }
 
-.navbar {
-  background: #f2f2f2;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+/* NAV ITEMS */
+.navbar a {
+  padding: 14px 20px;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  transition: 0.2s;
 }
-@media (max-width: 600px) {
-  .navbar a {
-    flex: 1 1 100%;
-    text-align: center;
-    border-top: 1px solid #ddd;
-  }
-}
+
 .navbar a:hover {
   background: #ddd;
 }
 
-/* SECTIONS */
+/* ================= MOBILE VERSION ================= */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .navbar a {
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    padding: 16px;
+    font-size: 16px;
+  }
+
+  .navbar a:first-child {
+    border-top: none;
+  }
+}/* SECTIONS */
 section {
   display: none;
   padding: 50px 20px;
